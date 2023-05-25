@@ -4,12 +4,17 @@ import com.karabiyik.dto.ProductDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ThymeleafController {
+    @GetMapping({"/", "index"})
+    public String index() {
+        return "index";
+    }
 
     @GetMapping("/thymeleaf1")
     public String getTymeleaf1(Model model) {
@@ -52,5 +57,15 @@ public class ThymeleafController {
         myList.add(ProductDto.builder().productID(4).productName("Ürün Adı4").productPrice(400.0).build());
         model.addAttribute("product_liste", myList);
         return "thymeleaf5";
+    }
+
+    @GetMapping({"/thymeleaf6", "/thymeleaf6/{id}"})
+    public String getTymeleaf6(Model model, @PathVariable(name = "id", required = false) Long id) {
+        if (id != null) {
+            model.addAttribute("key_model2", "id : " + id);
+        } else {
+            model.addAttribute("key_model2", "id bulunamadı");
+        }
+        return "thymeleaf6";
     }
 }
