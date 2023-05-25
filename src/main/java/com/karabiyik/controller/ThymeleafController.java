@@ -19,4 +19,11 @@ public class ThymeleafController {
     public String getThymeleaf2Model() {
         return "thymeleaf1";
     }
+
+    @GetMapping("/thymeleaf3")
+    public String getTymeleaf3(Model model) {
+        model.addAttribute("key_model2", "model3'den geldi");
+
+        return "thymeleaf3";
+    }
 }
