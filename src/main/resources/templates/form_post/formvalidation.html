@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Templates</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="container bg-dark text-white">
+
+<!--start codes-->
+<p th:text="#{register}" class="display-1 text-uppercase text-primary bordered mt-5"></p>
+
+<form th:method="post" th:action="@{/form}" th:object="${cv_teacher}">
+
+    <div class="form-group mb-4">
+        <label th:text="#{nameandsurname}" for="name_surname" class="text_capitalize text-muted"></label>
+        <input th:field="*{teacherNameSurname}" type="text" class="form-control" placeholder="adınız ve soyadınız"
+               id="name_surname" name="name_surname"
+               autofocus required>
+        <p class="text-danger" th:if="${#fields.hasErrors('teacherNameSurname')}" th:errors="*{teacherNameSurname}"></p>
+    </div>
+
+    <div class="form-group mb-4">
+        <label th:text="#{email}" for="email" class="text_capitalize text-muted"></label>
+        <input th:field="*{teacherEmail}" type="email" class="form-control" placeholder="email adresiniz" id="email"
+               name="email" required>
+        <p class="text-danger" th:if="${#fields.hasErrors('teacherEmail')}" th:errors="*{teacherEmail}"></p>
+    </div>
+    <div class="form-group mb-4">
+        <label th:text="#{password}" for="password" class="text_capitalize text-muted"></label>
+        <input th:field="*{teacherPassword}" type="password" class="form-control" placeholder="şifreniz" id="password"
+               name="password" required
+        >
+        <p class="text-danger" th:if="${#fields.hasErrors('teacherPassword')}" th:errors="*{teacherPassword}"></p>
+    </div>
+
+    <button th:text="#{clear}" type="reset" class="btn btn-danger"></button>
+    <button th:text="#{submit}" type="submit" class="btn btn-primary"></button>
+</form>
+
+<!--ends codes-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
